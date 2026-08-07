@@ -1,0 +1,64 @@
+Media Prep
+Copyright (c) 2026 GRC Digital
+
+This project is licensed under the MIT License. See LICENSE.
+
+Copyright holder: GRC Digital. All rights in this repository that are not
+expressly licensed under MIT remain with GRC Digital.
+
+AI editing record
+-----------------
+
+This repository was authored and iteratively edited with assistance from
+AI coding agents under human direction by GRC Digital. Tooling used to date:
+
+1. Cursor
+   Project scaffolding, OSS packaging, README demos/diagrams, CLI packaging
+   (`src/media_prep`), installers, and generality-upgrade docs.
+
+2. Codex
+   Original `media-prep-workbench` skill development (inspect / process /
+   trim workflows, storefront presets, and local media-prep runs that fed
+   the demo screenshots).
+
+3. WorkBuddy
+   Additional agent-assisted edits and review passes during skill and
+   project packaging.
+
+AI assistants do not hold copyright. Copyright remains with GRC Digital.
+Generated or agent-edited text and code in this tree are works made for /
+directed by GRC Digital unless a third-party notice below applies.
+
+Third-party acknowledgements
+---------------------------
+
+This repository packages a local storefront media-preparation workbench
+(Agent Skill + CLI). Links below are for transparency; none of the following
+projects endorse this repository.
+
+1. Pillow (PIL Fork)
+   https://github.com/python-pillow/Pillow
+   Used at runtime for image inspect / process / contact sheets.
+
+2. FFmpeg
+   https://ffmpeg.org/
+   Required on PATH (`ffmpeg` + `ffprobe`) for video inspect / process / trim.
+   Not bundled; users install separately.
+
+3. Open-source packaging layout inspired by Skill Self-Check
+   https://github.com/xenos2025/Skill-Self-Check
+   Reused as concepts for LICENSE/NOTICE, community docs, plugin.json,
+   installers, and GitHub templates — rewritten for this media workbench.
+
+4. Shopify Help Center / shopify.dev media guidance
+   Used as verified limits for the optional `--profile shopify` defaults.
+   Not affiliated with Shopify.
+
+Optional dependency:
+
+5. mozjpeg-lossless-optimization (extra `[mozjpeg]`)
+   Further lossless JPEG shrink after Pillow encode when installed.
+
+Skill markdown, CLI script, presets, packaging files, and README demo assets
+in this repository are original to GRC Digital / this project unless otherwise
+noted above.

@@ -1,0 +1,3 @@
+Pillow>=10.0
+# Optional: further lossless JPEG shrink after Pillow encode
+# mozjpeg-lossless-optimization>=1.0

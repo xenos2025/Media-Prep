@@ -1,0 +1,57 @@
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment and secrets — never commit
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+**/token*.json
+**/client_secret*.json
+
+# MCP configs that may carry credentials
+.mcp.json
+.mcp.local.json
+**/.mcp.json
+
+# IDE / local agent tooling
+.vscode/
+.idea/
+.cursor/
+.playwright-cli/
+*.swp
+*.swo
+*~
+
+# Local scratch / generated reports at repo root
+/outputs/
+/_scratch*/
+*.log
+
+# Orphaned run folder if someone processes into the repo root.
+# Do not use **/media-prep-workbench/ — that would ignore skill/media-prep-workbench/.
+/media-prep-workbench/
+
+# Archives
+*.zip
+*.tar.gz
+*.rar

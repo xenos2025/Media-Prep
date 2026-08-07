@@ -1,0 +1,4 @@
+interface:
+  display_name: "Media Prep Workbench"
+  short_description: "Batch images and videos for storefront media"
+  default_prompt: "Use $media-prep-workbench to prepare storefront images or videos for upload."

@@ -1,0 +1,21 @@
+{
+  "name": "media-prep",
+  "version": "0.1.0",
+  "description": "Project-neutral storefront media preparation workbench. Inspect, rename-map, compress, enhance, trim, crop, and QA images/videos locally. Shopify-compatible defaults are an optional profile.",
+  "author": "GRC Digital",
+  "homepage": "https://github.com/xenos2025/Media-Prep",
+  "repository": "https://github.com/xenos2025/Media-Prep",
+  "license": "MIT",
+  "entry": "skill/media-prep-workbench/SKILL.md",
+  "skillsDir": "skill",
+  "skills": [
+    "media-prep-workbench"
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "ffmpeg": "recommended for video commands",
+    "python_packages": [
+      "Pillow>=10.0"
+    ]
+  }
+}

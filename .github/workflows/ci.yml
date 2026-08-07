@@ -1,0 +1,75 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package
+        run: python -m pip install -e .
+
+      - name: CLI help smoke
+        run: |
+          python -m media_prep -h
+          python -m media_prep process-images -h
+          python -m media_prep process-videos -h
+          python skill/media-prep-workbench/scripts/media_prep.py -h
+
+      - name: Unit tests
+        run: python -m unittest discover tests -v
+
+  installer-smoke:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bash installer copies skill and rejects unsafe leaf
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          chmod +x install.sh
+          target="$(mktemp -d)"
+          ./install.sh --project "$target"
+          test -f "$target/.cursor/skills/media-prep-workbench/SKILL.md"
+          test -f "$target/.cursor/skills/media-prep-workbench/scripts/media_prep.py"
+          if ./install.sh --dest "$target/not-the-skill-name" --force; then
+            echo "installer accepted an unsafe destination leaf"
+            exit 1
+          fi
+
+      - name: PowerShell installer copies skill and rejects unsafe leaf
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $target = Join-Path $env:RUNNER_TEMP "media-prep-install-smoke"
+          New-Item -ItemType Directory -Force -Path $target | Out-Null
+          ./install.ps1 -Project $target
+          if (-not (Test-Path (Join-Path $target ".cursor/skills/media-prep-workbench/SKILL.md"))) {
+            throw "media-prep-workbench missing"
+          }
+          try {
+            ./install.ps1 -Dest (Join-Path $target "not-the-skill-name") -Force
+            throw "installer accepted an unsafe destination leaf"
+          }
+          catch {
+            if ($_.Exception.Message -eq "installer accepted an unsafe destination leaf") { throw }
+          }
