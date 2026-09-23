@@ -156,3 +156,5 @@ Shopify compatibility is built into the defaults so uploads are not re-processed
 - Remove audio from product videos by default for storefront media; preserve it only when user explicitly needs sound.
 - Treat AI image generation, background replacement, retouching that changes product appearance, or color changes beyond correction as separate creative work requiring explicit approval.
 - Do not batch RGB autocontrast presets on pink, white, pastel, fabric, cosmetic, food, or other color-critical media without a proof image; prefer `none` or `texture-safe`.
+
+When preparing a distributable media-prep archive, Read [this workflow](references/release-smoke.md) before preparing the change. Done when its scoped evidence and verification record are complete.
